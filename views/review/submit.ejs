@@ -1,0 +1,92 @@
+<%- include('../partials/header') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Review Central</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A platform to rate and review movies.">
+    <meta name="keywords" content="Movie Reviews, Star Ratings, Film Database">
+    <meta name="author" content="Your Team Name">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+
+
+    <!-- Main content -->
+    <main id="Rmain">
+        <!-- Review submission form -->
+        <section id="Rsection">
+            <h2>Submit a Review</h2>
+            <form id="Rform" action="/review/submit" method="POST"  enctype="multipart/form-data">
+                <label for="title">Movie Title:</label>
+                <input class="Rinput" type="text" id="title" name="title" placeholder="Movie Title" required
+                       value="<%= typeof formData !== 'undefined' ? formData.title || '' : '' %>">
+
+                <label for="year">Movie Year:</label>
+                <input  class="Rinput" type="number" id="year" name="year" placeholder="Choose Year" 
+                        min="1878" max="2025"
+                        value="<%= typeof formData !== 'undefined' ? formData.year || '' : '' %>">
+
+                
+                <label for="genre">Genre:</label>
+                <select id="genre" name="genre" >
+                    <option value="">Select genre</option>
+                    <option value="Action">Action</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Comedy">Comedy</option>
+                    <option value="Horror">Horror</option>
+                    <option value="Romance">Romance</option>
+                    <option value="Sci-Fi">Sci-Fi</option>
+                </select>
+
+                <label for="rating">Star Rating:</label>
+                <select id="rating" name="rating" required>
+                    <option value="">Select rating</option>
+                    <option value="1">★☆☆☆☆</option>
+                    <option value="2">★★☆☆☆</option>
+                    <option value="3">★★★☆☆</option>
+                    <option value="4">★★★★☆</option>
+                    <option value="5">★★★★★</option>
+                </select>
+
+                 <label for="message">Review</label>
+                <textarea 
+                  type="text" 
+                  id="message" 
+                  name="message" 
+                  rows="5"   
+                  placeholder="Movie Title" 
+                  required
+                  value="<%= typeof formData !== 'undefined' ? formData.message || '' : '' %>"
+                ></textarea>
+                <label for="movieImage">Upload Cover Image:</label>
+                <input 
+                  class="Rinput" 
+                  type="file" 
+                  id="movieImage" 
+                  name="movieImage"
+                  accept="image/png, image/jpeg, image/gif"
+                >
+                <div class="form-hint">Max size: 2MB. Formats: JPG, PNG, GIF</div>
+                      
+
+                <button type="submit">Post Review</button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Movie Review Central | All rights reserved.</p>
+        <p>Contact: <a href="mailto:team@example.com">team@example.com</a></p>
+    </footer>
+
+</body>
+</html>

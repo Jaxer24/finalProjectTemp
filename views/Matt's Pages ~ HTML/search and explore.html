@@ -1,0 +1,76 @@
+<%- include('../partials/header') %>
+
+<!-- Main Content Wrapper -->
+<div class="container">
+
+    <!-- Search & Explore -->
+    <section class="search-explore">
+        <h2>Search & Explore</h2>
+        <input type="text" placeholder="Search for movies..." class="search-box" />
+        <button class="search-btn">Search</button>
+    </section>
+
+</div>
+
+<%- include('../partials/footer') %>
+
+<style>
+    .container {
+        width: 80%;
+        margin: 0 auto;
+        font-family: Arial, sans-serif;
+        padding: 2rem 0;
+    }
+
+    section {
+        border-bottom: 1px solid #ccc;
+        padding: 1.5rem 0;
+    }
+
+    h2 {
+        margin-bottom: 1rem;
+        color: #333;
+    }
+
+    .search-box {
+        width: 70%;
+        padding: 0.5rem;
+        margin-right: 0.5rem;
+    }
+
+    .search-btn,
+    .comment-btn,
+    .like-btn,
+    .remove-btn {
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        background-color: #007BFF;
+        border: none;
+        color: white;
+        border-radius: 5px;
+    }
+
+    .bookmark-list, .comment-list {
+        margin-top: 1rem;
+    }
+
+    .bookmark-item, .comment {
+        margin-bottom: 0.5rem;
+    }
+
+    .comment-box {
+        width: 100%;
+        height: 80px;
+        padding: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .like-count {
+        margin-left: 1rem;
+        font-weight: bold;
+    }
+
+    input[type="file"] {
+        margin-right: 0.5rem;
+    }
+</style>

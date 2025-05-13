@@ -1,0 +1,109 @@
+<%- include('./partials/header') %>
+
+<div class="container">
+  <div class="welcome-section">
+    <h1><%= message %></h1>
+    
+    <% if (isAuthenticated) { %>
+      <div id="index-buttons" class="action-buttons">
+        <a href="/review/submit" class="btn primary-btn">Submit Review</a>
+        <a href="/user/search" class="btn primary-btn">Search User</a>
+        <a href="/review/list" class="btn primary-btn">View All Movies</a>
+      </div>
+    <% } else { %>
+      <div class="action-buttons">
+        <a href="/auth/login" class="btn primary-btn">Login</a>
+        <a href="/auth/register" class="btn secondary-btn">Register</a>
+      </div>
+    <% } %>
+  </div>
+  
+  <div class="list-section">
+    <h1 id="listTitle">Movie Lists</h1>
+    <a href="review/list/id/Comedy">
+      <div id="list-section">
+        <h2>Top 10 Comedies</h2>
+      </div>
+    </a>
+    <a href="review/list/id/Horror">
+      <div id="list-section">
+        <h2>Top 10 Horror</h2>
+      </div>
+    </a>
+    <a href="review/list/id/Drama">
+      <div id="list-section">
+        <h2>Top 10 Drama</h2>
+      </div>
+    </a>
+    <a href="review/list/id/Action">
+      <div id="list-section">
+        <h2>Top 10 Action</h2>
+      </div>
+    </a>
+    <a href="review/list/id/Romance">
+      <div id="list-section">
+        <h2>Top 10 Romance</h2>
+      </div>
+    </a>
+    <a href="review/list/id/Sci-Fi">
+      <div id="list-section">
+        <h2>Top 10 Sci-Fi</h2>
+      </div>
+    </a>
+  </div>
+  
+  <div class="features-section">
+    <h2>Features</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>User Authentication</h3>
+        <p>Secure login and registration with password hashing</p>
+      </div>
+      <div class="feature-card">
+        <h3>Session Management</h3>
+        <p>Persistent sessions with secure cookies</p>
+      </div>
+      <div class="feature-card">
+        <h3>Protected Routes</h3>
+        <p>Restrict access to authenticated users only</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  #index-button{
+    display:flex;
+    justify-content: center;
+    align-content: center;
+  }
+  
+  #list-section {
+    width: 100%;
+    background-color: white;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-sizing: border-box;
+    margin: 2rem 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--primary-color);
+    border-style: dotted;
+  }
+
+  #list-section h2 {
+    margin: 0 0 1rem;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    letter-spacing: 0.5px;
+  }
+  #listTitle{
+    display:flex;align-content:left; padding: 0px;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+  }
+</style>
+
+<%- include('./partials/footer') %>

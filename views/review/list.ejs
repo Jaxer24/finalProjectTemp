@@ -1,0 +1,162 @@
+<%- include('../partials/header') %>
+
+<div id="title-section">
+    <h2><%=listTitle ? listTitle : "List"%></h2>
+</div>
+<% if (!specialList) { %>
+    <div id="genreTags">
+        <a href="/review/list/genre/Action" class="btn">Action</a>
+        <a href="/review/list/genre/Drama" class="btn">Drama</a>
+        <a href="/review/list/genre/Comedy" class="btn">Comedy</a>
+        <a href="/review/list/genre/Horror" class="btn">Horror</a>
+        <a href="/review/list/genre/Romance" class="btn">Romance</a>
+        <a href="/review/list/genre/Sci-Fi" class="btn">Sci-Fi</a>
+    </div>
+<% } %>
+<div class="movie-list">
+    <% movies.forEach(movie => { %>
+        <div class="movie-card"><% if (movie.hasCoverImage) { %>
+            <img src="/review/cover-image/<%=movie._id%>" alt="Profile picture">
+          <% } else { %>
+            <!-- Display first letter of username as avatar -->
+            <div class="movie-avatar" >
+                <span><%= movie.title.charAt(0) %></span>
+            </div>
+          <% } %>
+            <div class="movie-details">
+                <div class="movie-title"><%= movie.title %></div>
+                <div class="movie-year"><%= movie.year %></div>
+                <div class="movie-genre">Genre: <%= movie.genre %></div>
+                <div class="movie-rating">Rating:  <%= movie.ratingAvg %> /5</div>
+            </div>
+            <div class="movie-actions">
+                 <% if (user.favorites.includes(movie._id)) { %>
+                    <form action="/user/favorites/<%= movie.title %>" method="GET">
+                    <button class="btn" type="submit">
+                       Remove Favorite
+                    </button>
+                    
+                </form>
+                
+                <% } else { %>
+                    <a href="/user/favorites/<%= movie.title %>" class="btn">Add Favorite</a>
+                <% } %>
+                
+                <a href="/review/view/<%= movie.title %>" class="btn">View Movie</a>
+            </div>
+        </div>
+    <% }) %>
+</div>
+
+
+
+<style>
+    #genreTags{
+        display: flex;
+        gap:100px;
+        margin: 0px 100px;
+    }
+    
+    .movie-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        padding: 2rem;
+        margin: 0rem 6rem;
+        background-color: #f8f9fa;
+    }
+    
+    
+    .movie-card {
+        background: white;
+        border-radius: 12px;
+        max-width: 300px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        overflow: hidden;
+        transition: transform 0.2s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .movie-image {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+    }
+
+    .movie-details {
+        padding: 1rem;
+        flex-grow: 1;
+    }
+
+    .movie-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+    }
+
+    .movie-genre,
+    .movie-rating {
+        font-size: 0.95rem;
+        color: #555;
+    }
+
+    .movie-rating {
+        margin-top: 0.5rem;
+    }
+
+    .movie-actions {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.5rem;
+        padding: 1rem;
+        padding-top: 0;
+    }
+
+    .movie-actions form,
+    .movie-actions a {
+        flex: 1;
+    }
+
+    .btn {
+        display: inline-block;
+        width: 100%;
+        padding: 0.5rem;
+        text-align: center;
+        border: none;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+    }
+    
+    #title-section {
+        display: flex;
+        justify-content:center;
+        align-content:center;
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        letter-spacing: 0.5px;
+        margin:5px;
+    }
+    
+</style>
+
+<%- include('../partials/footer') %>
+

@@ -1,0 +1,214 @@
+:root {
+    --primary-color: #1e2a38;
+    --accent-color: #f39c12;
+    --bg-color: #f7f9fc;
+    --card-bg: #ffffff;
+    --text-color: #2c3e50;
+    --muted-color: #7f8c8d;
+    --radius: 10px;
+    --font-family: 'Poppins', sans-serif;
+  }
+  
+  /* Base Styles */
+  body {
+    margin: 0;
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+  
+  /* Header Styles */
+  header {
+    background-color: #e74c3c; /* Red background */
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  header h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 600;
+    color: white; /* White title text */
+    transition: color 0.3s ease;
+  }
+  
+  /* Add hover effect for header title */
+  header h1:hover {
+    color: #f39c12; /* Change to yellow on hover */
+  }
+  
+  /* Image in Header */
+  header img {
+    width: 100px; /* Adjust size of image */
+    height: auto;
+    transition: transform 0.3s ease;
+  }
+  
+  /* Hover effect for image */
+  header img:hover {
+    transform: scale(1.1); /* Zoom in on hover */
+  }
+  
+  /* Navigation Styles */
+  nav {
+    margin-top: 1rem;
+    text-align: center;
+  }
+  
+  nav input {
+    padding: 0.5rem;
+    border-radius: var(--radius);
+    border: 1px solid #ccc;
+    width: 200px;
+    font-family: var(--font-family);
+    transition: border 0.3s ease;
+  }
+  
+  /* Focus and hover effects for the search input */
+  nav input:hover,
+  nav input:focus {
+    border: 1px solid #e74c3c; /* Red border on hover/focus */
+    outline: none;
+  }
+  
+  nav button {
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Button hover effect */
+  nav button:hover {
+    background-color: #d35400; /* Darken on hover */
+  }
+  
+  /* Main Content */
+  main {
+    padding: 2rem 5%;
+  }
+  
+  /* Form Styles */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: var(--radius);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  input,
+  select,
+  textarea {
+    padding: 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: var(--radius);
+    font-family: var(--font-family);
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* Focus and hover effects for form inputs */
+  input:hover,
+  select:hover,
+  textarea:hover,
+  input:focus,
+  select:focus,
+  textarea:focus {
+    border: 1px solid #e74c3c; /* Red border on hover/focus */
+    outline: none;
+    box-shadow: 0 0 5px rgba(231, 76, 60, 0.5); /* Red shadow */
+  }
+  
+  button[type="submit"] {
+    background-color: var(--accent-color);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0.75rem;
+    border-radius: var(--radius);
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Button hover effect */
+  button[type="submit"]:hover {
+    background-color: #d35400; /* Darker on hover */
+  }
+  
+  /* Review Display */
+  #reviewList {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  .review-card {
+    background: var(--card-bg);
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* Hover effect for review cards */
+  .review-card:hover {
+    transform: translateY(-5px); /* Lift up effect on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  .review-card h3 {
+    margin-top: 0;
+  }
+  
+  .tags {
+    font-size: 0.85rem;
+    color: var(--muted-color);
+  }
+  
+  .like-dislike {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+  
+  .like-dislike button {
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border: none;
+    border-radius: var(--radius);
+    background-color: #dfe6e9;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Hover effect for like/dislike buttons */
+  .like-dislike button:hover {
+    background-color: #b0bec5; /* Darken on hover */
+  }
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    background-color: #dfe6e9;
+    color: var(--primary-color);
+  }
+  
+  /* Footer link hover effects */
+  footer a:hover {
+    color: #e74c3c; /* Red color on hover */
+  }
+  

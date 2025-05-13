@@ -1,0 +1,102 @@
+<%- include('../partials/header') %>
+
+<div id="movieContainer">
+<div id="movieViewCard"class="welcome-section">
+  <div>
+  <% if (movie.hasCoverImage) { %>
+          <img  id=movieViewImg src="/review/cover-image/<%=movie._id%>" alt="Profile picture">
+        <% } else { %>
+          <!-- Display first letter of username as avatar -->
+          <div class="movie-avatar" >
+              <span><%= movie.title.charAt(0) %></span>
+          </div>
+        <% } %>
+  </div>
+  <div>
+    <h1><%= movie.title %></h1>
+                <div class="movie-genre">Genre: <%= movie.genre %> </div>
+    <div class="movie-rating">Rating:  <%= movie.ratingAvg?movie.ratingAvg:movie.rating %> /5</div>
+  </div>
+  <div id="movieViewActions" class="movie-actions">
+     <% if (user.favorites.includes(movie._id)) { %>
+        <form action="/user/favorites/<%= movie.title %>" method="GET">
+        <button class="btn" type="submit">
+           Remove Favorite
+        </button>
+    </form>
+    <% } else { %>
+        <form action="/user/favorites/<%= movie.title %>" method="GET">
+        <button class="btn" type="submit">
+           Add Favorite
+        </button>
+    </form>
+    <% } %>
+  </div>
+  
+</div>
+  <div class="movie-list">
+    <% movie.reviews.forEach(review => { %>
+        <div id="movieCard" class="movie-card">
+            <div class="movie-details">
+              <div class="profile-avatar">
+                <% if (review.userID.hasProfileImage) { %>
+                  <img src="/user/profile-image/<%=review.userID._id%>" alt="Profile picture">
+                <% } else { %>
+                  <!-- Display first letter of username as avatar -->
+                  <span><%= review.user.username.charAt(0) %></span>
+                <% } %>
+              </div>
+                <div class="username">By:  <%= review.userID.username %></div>
+                <div class="movie-rating">Rating:  <%= review.rating %> /5</div>
+                <div class="review-message"><%= review.message %></div>
+            </div>
+            <div class="movie-actions">
+                <a href="/user/profile/<%= review.userID.username %>" class="btn primary-btn">View Profile</a>
+              <% if(review.userID.username == user.username) { %>
+                <a href="/user/profile/<%= review.userID.username %>" class="btn primary-btn">Delete Review</a>
+              <% } %>
+            </div>
+        </div>
+    <% }) %>
+</div>
+</div>
+
+<Style>
+  .movie-list{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        padding: 2rem;
+        margin: 6rem;
+        background-color: #f8f9fa;
+  }
+  #movieCard{
+    padding: 5px;
+    border-style: dashed;
+    border-radius: 10px;
+  }
+  #movieContainer{
+    padding-top: 0px;
+    max-width: 90%;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  }
+  #movieViewCard{
+    padding-top: 0px;
+    margin-top: 0px;
+    display:flex;
+    justify-content: space-between;
+    margin: 10%;
+  }
+  #movieViewImg{
+    width: 100%;
+    justify-content:center;
+    align-content:center;
+  }
+</Style>
+    
+
+<%- include('../partials/footer') %>

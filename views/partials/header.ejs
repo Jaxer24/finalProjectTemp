@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> | 🎬 Movie Review Central</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+        <div class="logo">
+          <a href="/">🎬 Movie Review Central</a>
+             
+   <form class="header-form" action="/review/list/search" method="POST">
+      
+      <div class="form-group">
+        <label for="title"></label>
+        <input 
+          type="text"    
+          id="title" 
+          name="title" 
+          value="<%= typeof formData !== 'undefined' ? formData.title || '' : '' %>"
+          placeholder="Movie Title"    
+        >
+      </div>
+      
+        <div id="header-search" class="form-actions">
+            <button type="submit" class="btn primary-btn">Submit</button>
+        </div>
+    </form>
+      </div>
+      <ul class="nav-links">
+        
+        <li><a href="/" class="<%= path === '/' ? 'active' : '' %>">Home</a></li>
+        <li><a href="/about" class="<%= path === '/about' ? 'active' : '' %>">About</a></li>
+        
+        <% if (isAuthenticated) { %>
+          <li><a href="/user/profile" class="<%= path === '/user/profile' ? 'active' : '' %>">Profile</a></li>
+          <li><a href="/user/settings" class="<%= path === '/user/settings' ? 'active' : '' %>">Settings</a></li>
+          <li><a href="/auth/logout">Logout</a></li>
+        <% } else { %>
+          <li><a href="/auth/login" class="<%= path === '/auth/login' ? 'active' : '' %>">Login</a></li>
+          <li><a href="/auth/register" class="<%= path === '/auth/register' ? 'active' : '' %>">Register</a></li>
+        <% } %>
+      </ul>
+    </nav>
+  </header>
+  
+  <style>
+  
+  div#header-search{
+    transform: translate(10%, -60%);
+  }  
+    
+  form.header-form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+}
+  </style>
+  <main>
