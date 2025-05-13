@@ -10,7 +10,7 @@ const Movie = require('../models/Movie');
 const upload = require('../middlewares/upload');
 
 /**
- * Display Review Submition page
+ * Get Review Submition page
  */
 exports.getReviewSubmit = (req, res) => {
   // Get flash message from session if it exists
@@ -26,7 +26,7 @@ exports.getReviewSubmit = (req, res) => {
 };
 
 /**
- * Process Review form submission
+ * Post Review submission
  */
 exports.postReview =[ async (req, res, next) => {
   try {
@@ -185,7 +185,7 @@ const hasReviewByUser = movieRevs.reviews.some(review =>
 }];
 
 /**
- * Get any user's profile image by ID
+ * Get any movie's cover image by ID
  */
 exports.getCoverImage = async (req, res, next) => {
   try {
@@ -207,9 +207,8 @@ exports.getCoverImage = async (req, res, next) => {
   }
 };
 
-
 /**
- * Display Search page
+ * Get movie Search page
  */
 
 exports.getSearch = async (req, res) => {
@@ -237,6 +236,9 @@ exports.getSearch = async (req, res) => {
     });
 };
 
+/**
+ * Post movie Search submission
+ */
 
 exports.postSearch = async (req, res) => {
   try {
@@ -247,7 +249,6 @@ exports.postSearch = async (req, res) => {
     console.error('Review error:', error);
   }
 };
-
 
   /**
  * Get any review by title
@@ -278,6 +279,10 @@ exports.getReviewView = async (req, res) => {
     next(error);
   }
 };
+
+/**
+ * Get default list of all movies
+ */
 
 exports.getList = async (req, res) => {
   try {
@@ -310,6 +315,10 @@ exports.getList = async (req, res) => {
   }
 };
 
+/**
+ * Get any user's favorite movie list page
+ */
+
 exports.getFavoriteList = async (req, res, next) => {
       console.log("getting favorite list of: ");
   
@@ -336,6 +345,11 @@ exports.getFavoriteList = async (req, res, next) => {
     next(error);
   }
 };
+
+/**
+ *  Get movie list by specified id in review/list/id/:listId
+ *  Used for specialized top 10 list or any pre made special list of movies that may be wanted
+ */
 
 exports.getIdList = async (req, res) => {  
   try {
@@ -399,6 +413,10 @@ exports.getIdList = async (req, res) => {
   }
 };
 
+/**
+ *  Get entire list of a certain genre 
+ */
+
 exports.getGenreList = async (req, res) => {  
   try {
     // Get user ID from session
@@ -461,7 +479,11 @@ exports.getGenreList = async (req, res) => {
   }
 };
 
-
+/**
+ *  Post entire movie list by title, only used to search movies from header.ejs
+ * (searching a movie title gives you that movie, 
+ *  searching letters gives all movies that start with those letterrs, case-insensitive)
+ */
 
 exports.postSearchList = async (req, res) => {  
   try {
@@ -524,7 +546,7 @@ exports.postSearchList = async (req, res) => {
 };
 
 /**
- * Delete a review
+ * Delete a review bt ID
  */
 exports.deleteReview = async (req, res, next) => {
     try {
@@ -547,93 +569,4 @@ exports.deleteReview = async (req, res, next) => {
       next(error);
     }
   };
-
-
-
-
-
-
-/**
- * Display the edit review form
- */
-exports.getupdateReview = async (req, res, next) => {
-    try {
-      const review = await Review.findById(req.params.id);
-      if (!review) {
-        return res.status(404).render('error', { message: 'Review not found' });
-      }
-      res.render('review/edit', {
-        title: 'Edit Review',
-        review,
-        errors: []
-      });
-    } catch (error) {
-      next(error);
-    }
-  };
-
-/**
- * Process the edit review form submission
- */
-exports.postUpdateReview = async (req, res, next) => {
-    try {
-      const review = await Review.findById(req.params.id);
-      if (!review) {
-        return res.status(404).render('error', { message: 'Review not found' });
-      }
-  
-      // Update review fields
-      review.movieTitle = req.body.movieTitle;
-      review.message = req.body.message;
-      review.rating = req.body.rating;
-      review.genreTags = req.body.genreTags ? req.body.genreTags.split(',').map(tag => tag.trim()) : [];
-  
-      await review.save();
-  
-      req.flash('flashMessage', {
-        type: 'success',
-        text: 'Review updated successfully!'
-      });
-  
-      res.redirect(`/review/${req.params.id}`);
-    } catch (error) {
-      next(error);
-    }
-  };
-  
-
-
-/**
- * Display all reviews
- */
-exports.getAllReviews = async (req, res, next) => {
-    try {
-      const reviews = await Review.find().sort({ createdAt: -1 }); // newest first
-      res.render('review/all', {
-        title: 'All Reviews',
-        reviews
-      });
-    } catch (error) {
-      next(error);
-    }
-  };
-
-/**
- * Display a single review
- */
-exports.getSingleReview = async (req, res, next) => {
-    try {
-      const review = await Review.findById(req.params.id);
-      if (!review) {
-        return res.status(404).render('error', { message: 'Review not found' });
-      }
-      res.render('review/detail', {
-        title: review.movieTitle,
-        review
-      });
-    } catch (error) {
-      next(error);
-    }
-  };
-
 

@@ -8,37 +8,38 @@ const router = express.Router();
 const reviewController = require('../controllers/reviewController');
 
 
-// GET /user/profile - User profile page
+// GET /review/list - list of all movies
 router.get('/list', reviewController.getList);
 
-// GET /user/profile - User profile page
+// GET /review/list/user/:username - list of all of a user's favorite movies
 router.get('/list/user/:username', reviewController.getFavoriteList);
 
-// GET /user/profile - User profile page
+// GET /review/list/id/:listId - specialized list made by us
 router.get('/list/id/:listId', reviewController.getIdList);
 
-// GET /user/profile - User profile page
+// GET /review/list/genre/:genreId - list all movies in a genre
 router.get('/list/genre/:genreId', reviewController.getGenreList);
 
-// GET /user/profile - User profile page
+// GET /review/submit - review submission page
 router.get('/submit', reviewController.getReviewSubmit);
 
-// POST /review/submit - 
+// POST /review/submit - post review
 router.post('/submit', reviewController.postReview);
 
+//GET /review/delete/:reviewId - delete a review
 router.get('/delete/:reviewId',reviewController.deleteReview);
 
-// GET /user/profile-image/:userId - Get any user's profile image by ID
+// GET /review/cover-image/:movieId - Get any movie's cover image by ID
 router.get('/cover-image/:movieId', reviewController.getCoverImage);
 
 
-// GET /user/profile - User profile page
+// GET /review/view/:title - individual movie page 
 router.get('/view/:title', reviewController.getReviewView);
 
-// GET /user/profile - User profile page
+// GET /review/list/search/:searchId - list of movis queried through search bar in header
 router.get('/list/search/:searchId', reviewController.getSearch);
 
-// GET /user/profile - User profile page
+// POST /list/search - post queried movie search
 router.post('/list/search', reviewController.postSearch);
 
 module.exports = router;
