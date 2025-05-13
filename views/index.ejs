@@ -17,40 +17,41 @@
       </div>
     <% } %>
   </div>
-  
-  <div class="list-section">
-    <h1 id="listTitle">Movie Lists</h1>
-    <a href="review/list/id/Comedy">
-      <div id="list-section">
-        <h2>Top 10 Comedies</h2>
-      </div>
-    </a>
-    <a href="review/list/id/Horror">
-      <div id="list-section">
-        <h2>Top 10 Horror</h2>
-      </div>
-    </a>
-    <a href="review/list/id/Drama">
-      <div id="list-section">
-        <h2>Top 10 Drama</h2>
-      </div>
-    </a>
-    <a href="review/list/id/Action">
-      <div id="list-section">
-        <h2>Top 10 Action</h2>
-      </div>
-    </a>
-    <a href="review/list/id/Romance">
-      <div id="list-section">
-        <h2>Top 10 Romance</h2>
-      </div>
-    </a>
-    <a href="review/list/id/Sci-Fi">
-      <div id="list-section">
-        <h2>Top 10 Sci-Fi</h2>
-      </div>
-    </a>
-  </div>
+  <% if (isAuthenticated) { %> 
+    <div class="list-section">
+      <h1 id="listTitle">Movie Lists</h1>
+      <a href="review/list/id/Comedy">
+        <div id="list-section">
+          <h2>Top 10 Comedies</h2>
+        </div>
+      </a>
+      <a href="review/list/id/Horror">
+        <div id="list-section">
+          <h2>Top 10 Horror</h2>
+        </div>
+      </a>
+      <a href="review/list/id/Drama">
+        <div id="list-section">
+          <h2>Top 10 Drama</h2>
+        </div>
+      </a>
+      <a href="review/list/id/Action">
+        <div id="list-section">
+          <h2>Top 10 Action</h2>
+        </div>
+      </a>
+      <a href="review/list/id/Romance">
+        <div id="list-section">
+          <h2>Top 10 Romance</h2>
+        </div>
+      </a>
+      <a href="review/list/id/Sci-Fi">
+        <div id="list-section">
+          <h2>Top 10 Sci-Fi</h2>
+        </div>
+      </a>
+    </div>
+  <% } %>
   
   <div class="features-section">
     <h2>Features</h2>

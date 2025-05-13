@@ -11,7 +11,7 @@
     <nav class="navbar">
         <div class="logo">
           <a href="/">🎬 Movie Review Central</a>
-             
+         <% if (isAuthenticated) { %>   
    <form class="header-form" action="/review/list/search" method="POST">
       
       <div class="form-group">
@@ -29,6 +29,7 @@
             <button type="submit" class="btn primary-btn">Submit</button>
         </div>
     </form>
+          <% } %>
       </div>
       <ul class="nav-links">
         
